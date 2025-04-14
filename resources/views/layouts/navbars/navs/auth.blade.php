@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
     <div class="container-fluid">
         <div class="navbar-wrapper d-none">
@@ -24,26 +25,24 @@
                 </li>
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="notification d-none d-lg-block d-xl-block"></div>
-                        <i class="tim-icons icon-sound-wave"></i>
-                        <p class="d-lg-none"> {{ __('Notifications') }} </p>
+                        <div class="photo">
+                            <i class="tim-icons icon-paper"></i>
+                        </div>
+                        <b class="caret d-none d-lg-block d-xl-block"></b>
+                        <p class="d-lg-none">Notícias</p>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                    <ul class="dropdown-menu dropdown-navbar">
+                        @forelse ($ultimasNoticias as $noticia)
                         <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Mike John responded to your email') }}</a>
+                            <a href="{{ route('noticias.show', $noticia->id) }}">
+                                {{ $noticia->titulo }}
+                            </a>
                         </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('You have 5 more tasks') }}</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Your friend Michael is in town') }}</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Another notification') }}</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Another one') }}</a>
-                        </li>
+                        @empty
+                            <li class="nav-link">
+                                <span class="nav-item dropdown-item text-muted">Nenhuma notícia recente</span>
+                            </li>
+                        @endforelse
                     </ul>
                 </li>
                 <li class="dropdown nav-item">

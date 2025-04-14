@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
     // ✅ Deleção de Noticias
 
+    Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
+
     Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 
     // ✅ Rotas de perfil

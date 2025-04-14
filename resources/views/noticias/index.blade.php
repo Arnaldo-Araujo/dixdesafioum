@@ -4,6 +4,8 @@
 <div class="container mt-4">
     <div class="d-flex justify-contente-betwen aling-items-centrer mb-3">
         <h4>Minhas Notícias</h4>
+    </div>
+    <div class="d-flex justify-contente-betwen mb-3">
         <a href="{{ route('noticias.create') }}" class="btn btn-primary">Criar Nova</a>
     </div>
     @if(session('success'))
@@ -14,6 +16,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th>Abrir Notícias</th>
                     <th>Título</th>
                     <th>Conteúdo</th>
                     <th>Data</th>
@@ -23,15 +26,19 @@
             <tbody>
                 @foreach($noticias as $noticia)
                     <tr>
-                        <td style="width: 10%">{{ $noticia->titulo }}</td>
-                        <td style="width: 40%">{{ Str::limit($noticia->conteudo, 50) }}</td>
+                        <td>
+                            <a href="{{ route('noticias.show', $noticia->id) }}" class="btn btn-warning btn-sm">Abrir Notícia</a>
+                        </td>
+                        <td style="width:10%">{{ $noticia->titulo }}</td>
+                        <td style="width:50%">{{ Str::limit($noticia->conteudo, 50) }}</td>
                         <td style="width:10%">{{ $noticia->created_at->format('d/m/Y') }}</td>
-                        <td style="width:40%">
+                        <td>
                             <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-warning btn-sm">Editar</a>
                             <button type="button" class="btn btn-danger btn-sm" onclick="abrirModalExcluir({{ $noticia->id }})">
                                 Excluir
                             </button>
                         </td>
+
                     </tr>
                 @endforeach
             </tbody>

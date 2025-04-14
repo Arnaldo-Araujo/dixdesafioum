@@ -78,5 +78,13 @@ class NoticiaController extends Controller
 
         return redirect()->route('noticias.index')->with('success', 'Notícia excluída com sucesso!');
     }
+    public function show($id)
+    {
+        $noticia = Noticia::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        return view('noticias.show', compact('noticia'));
+    }
 
 }

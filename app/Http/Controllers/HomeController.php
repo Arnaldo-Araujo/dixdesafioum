@@ -1,12 +1,17 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        return view('dashboard', [
-            'pageSlug' => 'dashboard',
-        ]);
+        $this->middleware('auth');
+    }
+
+    public function index(): RedirectResponse
+    {
+        return redirect()->route('noticias.index');
     }
 }

@@ -1,15 +1,21 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "public/index.php",
-        "use": "@vercel/php"
+    "functions": {
+      "api/index.php": {
+        "runtime": "vercel-php@0.7.3"
       }
-    ],
+    },
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "public/index.php"
+        "dest": "/api/index.php"
       }
-    ]
+    ],
+    "env": {
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
+    "APP_KEY": "base64:IhNN8lnS7t4Z9J3Lmjgr5gkBFrmBqjmXV3QPl7Cz2nk=",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": "/tmp/database.sqlite"
+  }
   }

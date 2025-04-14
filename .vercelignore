@@ -1,0 +1,9 @@
+node_modules
+resources/js/
+resources/css/
+vite.config.js
+package.json
+public/storage
+resources/assets
+storage/*.key
+tests

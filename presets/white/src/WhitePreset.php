@@ -1,5 +1,4 @@
 <?php
-
 namespace LaravelFrontendPresets\WhitePreset;
 
 use Illuminate\Filesystem\Filesystem;
@@ -7,7 +6,7 @@ use Laravel\Ui\Presets\Preset;
 
 class WhitePreset extends Preset
 {
-    const STUBSPATH = __DIR__.'/white-stubs/';
+    const STUBSPATH = __DIR__ . '\\stubs\\';
 
     /**
      * Install the preset.
@@ -18,16 +17,16 @@ class WhitePreset extends Preset
     {
         static::updatePackages();
         static::updateAssets();
-        
+
         static::updateWelcomePage();
         static::updateAuthViews();
         static::updateLayoutViews();
         static::updateDashboardPage();
-        
+
         static::addPagesViews();
-        
+
         static::addUserManagement();
-        
+
         // static::removeNodeModules();
     }
 
@@ -49,7 +48,7 @@ class WhitePreset extends Preset
      */
     protected static function updateAssets()
     {
-        static::copyDirectory('resources/assets', public_path('white'));
+        static::copyDirectory('resources\\assets', public_path('stubs'));
     }
 
     /**
@@ -60,10 +59,10 @@ class WhitePreset extends Preset
     protected static function updateWelcomePage()
     {
         // remove default welcome page
-        static::deleteResource(('views/welcome.blade.php'));
+        static::deleteResource(('views\\welcome.blade.php'));
 
         // copy new one from your stubs folder
-        static::copyFile('resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
+        static::copyFile('resources\\views\\welcome.blade.php', resource_path('views\\welcome.blade.php'));
     }
 
     /**
@@ -74,10 +73,10 @@ class WhitePreset extends Preset
     protected static function updateDashboardPage()
     {
         // remove default welcome page
-        static::deleteResource(('views/dashboard.blade.php'));
+        static::deleteResource(('views\\dashboard.blade.php'));
 
         // copy new one from your stubs folder
-        static::copyFile('resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        static::copyFile('resources\\views\\dashboard.blade.php', resource_path('views\\dashboard.blade.php'));
     }
 
     /**
@@ -88,7 +87,7 @@ class WhitePreset extends Preset
     protected static function updateLayoutViews()
     {
         // copy new one from your stubs folder
-        static::copyDirectory('resources/views/layouts', resource_path('views/layouts'));
+        static::copyDirectory('resources\\views\\layouts', resource_path('views\\layouts'));
     }
 
     /**
@@ -99,22 +98,22 @@ class WhitePreset extends Preset
     protected static function updateAuthViews()
     {
         // Add Home controller
-        static::copyFile('app/Http/Controllers/HomeController.php', app_path('Http/Controllers/HomeController.php'));
+        static::copyFile('app\\Http\\Controllers\\HomeController.php', app_path('Http\\Controllers\\HomeController.php'));
 
         // Add Auth routes in 'routes/web.php'
         file_put_contents(
-            './routes/web.php',
-            "Auth::routes();\n\nRoute::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');\n\n",
+            '.\\routes\\web.php',
+            "Auth::routes();\n\nRoute::get('\\home', 'App\\Http\\Controllers\\HomeController@index')->name('home')->middleware('auth');\n\n",
             FILE_APPEND
         );
-        
+
         // Copy white auth views from the stubs folder
-        static::deleteResource('views/home.blade.php');
-        static::copyDirectory('resources/views/auth', resource_path('views/auth'));
-        static::copyDirectory('resources/views/alerts', resource_path('views/alerts'));
-        static::copyFile('app/Http/Controllers/Auth/RegisterController.php', app_path('Http/Controllers/Auth/RegisterController.php'));
+        static::deleteResource('views\\home.blade.php');
+        static::copyDirectory('resources\\views/auth', resource_path('views\\auth'));
+        static::copyDirectory('resources\\views\\alerts', resource_path('views\\alerts'));
+        static::copyFile('app\\Http\\Controllers\\Auth\\RegisterController.php', app_path('Http\\Controllers\\Auth\\RegisterController.php'));
     }
-    
+
     /**
      * Copy user management and profile edit files
      *
@@ -123,23 +122,23 @@ class WhitePreset extends Preset
     public static function addUserManagement()
     {
         // Add seeder, controllers, requests and rules
-        static::copyDirectory('database/seeds', app_path('../database/seeders'));
-               
-        static::copyFile('app/Http/Controllers/UserController.php', app_path('Http/Controllers/UserController.php'));
-        static::copyFile('app/Http/Controllers/ProfileController.php', app_path('Http/Controllers/ProfileController.php'));
-        static::copyDirectory('app/Http/Requests', app_path('Http/Requests'));
-        static::copyDirectory('app/Rules', app_path('Rules'));
+        static::copyDirectory('database\\seeds', app_path('..\\database\\seeders'));
+
+        static::copyFile('app\\Http\\Controllers\\UserController.php', app_path('Http\\Controllers\\UserController.php'));
+        static::copyFile('app\\Http\\Controllers\\ProfileController.php', app_path('Http\\Controllers\\ProfileController.php'));
+        static::copyDirectory('app\\Http\\Requests', app_path('Http\\Requests'));
+        static::copyDirectory('app\\Rules', app_path('Rules'));
 
         // Add routes
         file_put_contents(
-            './routes/web.php',
-            "Route::group(['middleware' => 'auth'], function () {\n\tRoute::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);\n\tRoute::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);\n\tRoute::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);\n\tRoute::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);\n});\n\n",
+            '.\\routes\\web.php',
+            "Route::group(['middleware' => 'auth'], function () {\n\tRoute::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);\n\tRoute::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);\n\tRoute::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);\n\tRoute::put('profile\\password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);\n});\n\n",
             FILE_APPEND
         );
 
         // Copy views
-        static::copyDirectory('resources/views/users', resource_path('views/users'));
-        static::copyDirectory('resources/views/profile', resource_path('views/profile'));
+        static::copyDirectory('resources\\views\\users', resource_path('views\\users'));
+        static::copyDirectory('resources\\views\\profile', resource_path('views\\profile'));
     }
 
     /**
@@ -151,15 +150,15 @@ class WhitePreset extends Preset
     {
         // Add routes
         file_put_contents(
-            './routes/web.php',
+            '.\\routes\\web.php',
             "Route::group(['middleware' => 'auth'], function () {\n\t\tRoute::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);\n\t\tRoute::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);\n\t\tRoute::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);\n\t\tRoute::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);\n\t\tRoute::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);\n\t\tRoute::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);\n\t\tRoute::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);\n});\n\n",
             FILE_APPEND
         );
 
-        static::copyFile('app/Http/Controllers/PageController.php', app_path('Http/Controllers/PageController.php'));
+        static::copyFile('app\\Http\\Controllers\\PageController.php', app_path('Http\\Controllers\\PageController.php'));
 
         // Copy views
-        static::copyDirectory('resources/views/pages', resource_path('views/pages'));
+        static::copyDirectory('resources\\views\\pages', resource_path('views\\pages'));
     }
 
     /**
@@ -182,7 +181,14 @@ class WhitePreset extends Preset
      */
     private static function copyFile($file, $destination)
     {
-        (new Filesystem)->copy(static::STUBSPATH.$file, $destination);
+        $source      = static::STUBSPATH . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $file);
+        $destination = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $destination);
+
+        if (file_exists($source)) {
+            (new Filesystem)->copy($source, $destination);
+        } else {
+            info("Arquivo não encontrado: " . $source); // Ajuda a debugar
+        }
     }
 
     /**
@@ -194,6 +200,14 @@ class WhitePreset extends Preset
      */
     private static function copyDirectory($directory, $destination)
     {
-        (new Filesystem)->copyDirectory(static::STUBSPATH.$directory, $destination);
+        $source      = static::STUBSPATH . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $directory);
+        $destination = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $destination);
+
+        if (is_dir($source)) {
+            (new Filesystem)->copyDirectory($source, $destination);
+        } else {
+            info("Diretório não encontrado: " . $source); // Loga caso esteja faltando
+        }
     }
+
 }

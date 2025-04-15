@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/noticias');
 });
+Route::get('/home', function () {
+    return redirect()->route('noticias.index'); // ou redirecione para o dashboard, se preferir
+})->name('home');
 
 Auth::routes();
 
@@ -23,5 +26,8 @@ Route::middleware('auth')->group(function () {
     // Perfil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/salvar-cor', [ProfileController::class, 'salvarCor'])->name('profile.salvarCor');
+    Route::put('/profile/update-foto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
+    Route::delete('/profile/remover-foto', [ProfileController::class, 'removerFoto'])->name('profile.removerFoto');
     Route::put('/profile/password', [ProfileController::class, 'password'])->name('profile.password');
 });

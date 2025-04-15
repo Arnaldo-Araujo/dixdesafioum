@@ -1,6 +1,10 @@
-@php $pageSlug = $pageSlug ?? '' @endphp
+@php
+    $cor = auth()->user()->theme_color ?? 'primary';
+@endphp
+
 <div class="sidebar">
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper sidebar-{{ $cor }}">
+
         <div class="logo">
             <a href="#" class="simple-text logo-normal">{{ _('DIX Digital Dashboard') }}</a>
         </div>

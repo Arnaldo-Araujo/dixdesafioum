@@ -7,14 +7,25 @@ use Illuminate\Support\Facades\Auth;
 
 class NoticiaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $noticias = Noticia::where('user_id', Auth::id())->get();
+        $query = Noticia::where('user_id', auth()->id());
 
-        return view('noticias.index', [
-            'noticias' => $noticias,
-            'pageSlug' => 'noticias',
-        ]);
+        if ($request->filled('titulo')) {
+            $query->where('titulo', 'like', '%' . $request->titulo . '%');
+        }
+
+        if ($request->filled('conteudo')) {
+            $query->where('conteudo', 'like', '%' . $request->conteudo . '%');
+        }
+
+        if ($request->filled('data')) {
+            $query->whereDate('created_at', $request->data);
+        }
+
+        $noticias = $query->latest()->paginate(10);
+
+        return view('noticias.index', compact('noticias'));
     }
 
     public function create()

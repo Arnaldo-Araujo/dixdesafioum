@@ -13,6 +13,12 @@
     @endif
     @if($noticias->count())
     <div class="table-responsive">
+        @if(request()->has('titulo') || request()->has('conteudo') || request()->has('data'))
+            <div class="alert alert-info d-flex justify-content-between align-items-center">
+                <span>🔍 Exibindo resultados filtrados</span>
+                <a href="{{ route('noticias.index') }}" class="btn btn-sm btn-outline-light">Limpar Filtros</a>
+            </div>
+        @endif
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

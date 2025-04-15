@@ -55,14 +55,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
-                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item">{{ __('Profile') }}</a>
+                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item">{{ __('Perfil') }}</a>
                         </li>
                         <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Settings') }}</a>
+                            <a href="#" class="nav-item dropdown-item">{{ __('Configurações') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">
-                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Sair') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -74,12 +74,37 @@
 <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{ __('SEARCH') }}">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
-                    <i class="tim-icons icon-simple-remove"></i>
-              </button>
+                <h5 class="modal-title">Pesquisar Notícias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+
+            <form action="{{ route('noticias.index') }}" method="GET">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Digite o título">
+                    </div>
+                    <div class="form-group">
+                        <label for="conteudo">Conteúdo contém</label>
+                        <input type="text" name="conteudo" id="conteudo" class="form-control" placeholder="Palavra-chave no conteúdo">
+                    </div>
+                    <div class="form-group">
+                        <label for="data">Data (opcional)</label>
+                        <input type="date" name="data" id="data" class="form-control">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">🔍 Pesquisar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
+

@@ -26,6 +26,10 @@
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
                     </div>
+                    <div class="form-group">
+                        <label for="foto">Foto de Perfil</label>
+                        <input type="file" class="form-control" name="foto" id="foto">
+                    </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>
                     </div>

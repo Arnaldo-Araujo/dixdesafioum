@@ -115,3 +115,19 @@ Desenvolvedor Backend | Especialista em Laravel, Java, Spring Boot
 |conteudo| text| Conteúdo principal|
 |user_id| bigint| Relacionamento com users.id|
 |timestamps| datetime| created_at, updated_at|
+
+---
+
+## 🌐 Observação sobre deploy no Vercel
+
+Uma tentativa de adaptação foi realizada para o deploy do sistema no Vercel, incluindo:
+
+- Redução de rotas e controllers para limitar o número de Serverless Functions
+- Adaptação de conexão com SQLite para evitar uso intenso de MySQL
+
+No entanto, devido às **limitações da conta gratuita (como número reduzido de funções e tempo de build)**, optou-se por **reverter a adaptação** e manter o ambiente local com XAMPP + MySQL.
+
+A tentativa pode ser consultada na branch:
+[`vercel-adaptacao-revertida`](https://github.com/Arnaldo-Araujo/dixdesafioum/tree/feature/vercel-adaptacao-reverti)
+
+---

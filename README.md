@@ -76,19 +76,20 @@ noticias: id, titulo, conteudo, user_id (relacionamento), created_at
 
 📂 Estrutura de Diretórios
 
-    app/
-        ├── Http/
-        │   └── Controllers/
-        │       ├── Auth/
-        │       ├── NoticiaController.php
-        │       └── UserController.php
-        resources/
-        ├── views/
-        │   ├── noticias/
-        │   ├── users/
-        │   └── auth/
-        routes/
-        └── web.php
+```bash
+        app/
+            ├── Http/
+            │   └── Controllers/
+            │       ├── Auth/
+            │       ├── NoticiaController.php
+            │       └── UserController.php
+            resources/
+            ├── views/
+            │   ├── noticias/
+            │   ├── users/
+            │   └── auth/
+            routes/
+            └── web.php
 👨‍💻 Autor
 
 Arnaldo Junior

@@ -69,6 +69,24 @@ Sistema web desenvolvido com **Laravel 11** como parte do processo seletivo da *
 
 Acesse em <http://localhost:8000>
 
+## ⏰ Configuração de Fuso Horário
+Para garantir que datas e horários sejam salvos corretamente conforme o horário de Brasília, foram aplicadas as seguintes configurações:
+
+No arquivo .env:
+```bash
+    APP_TIMEZONE=America/Sao_Paulo
+    APP_LOCALE=pt_BR
+    APP_FALLBACK_LOCALE=pt_BR
+
+```
+
+No arquivo config/app.php:
+```bash
+    'timezone' => env('APP_TIMEZONE', 'America/Sao_Paulo'),
+    'locale' => env('APP_LOCALE', 'pt_BR'),
+```
+
+
 ## 🗃️ Estrutura de Banco (Resumida)
 **users:** id, name, email, password, created_at
 

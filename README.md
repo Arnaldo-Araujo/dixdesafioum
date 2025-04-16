@@ -12,7 +12,11 @@ Sistema web desenvolvido com **Laravel 11** como parte do processo seletivo da *
 - [x] Filtro de pesquisa de notícias por título
 - [x] Cada usuário visualiza apenas suas próprias notícias
 - [x] Interface baseada no template **White Dashboard Laravel**
-- [x] Banco de dados relacional MySQL
+- [x] Banco de dados relacional sqlite
+- [x] Upload e edição de foto de perfil
+- [x] Escolha de cor personalizada do tema do dashboard
+- [x] Separação do formulário de atualização de perfil e da foto
+- [x] Botão para resetar a foto para o padrão
 - [x] Versionamento com Git (commits organizados por feature/fix/etc.)
 
 ---
@@ -35,7 +39,7 @@ Sistema web desenvolvido com **Laravel 11** como parte do processo seletivo da *
 2. Clonar o projeto:
 
    ```bash
-   git clone https://github.com/seu-usuario/dixdesafioum.git
+   git clone https://github.com/Arnaldo-Araujo/dixdesafioum.git
    cd dixdesafioum
 
 3. Instalar as dependências:
@@ -47,12 +51,8 @@ Sistema web desenvolvido com **Laravel 11** como parte do processo seletivo da *
 4. Configurar o .env:
 
     ```bash
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=dixdesafioum
-    DB_USERNAME=dixdigital
-    DB_PASSWORD=dix12345678o
+    DB_CONNECTION=sqlite
+    DB_DATABASE=/tmp/database.sqlite
  
 5. Gerar a key do Laravel:
 
@@ -69,35 +69,40 @@ Sistema web desenvolvido com **Laravel 11** como parte do processo seletivo da *
 
 Acesse em <http://localhost:8000>
 
-🗃️ Estrutura de Banco (Resumida)
-users: id, name, email, password, created_at
+## 🗃️ Estrutura de Banco (Resumida)
+**users:** id, name, email, password, created_at
 
-noticias: id, titulo, conteudo, user_id (relacionamento), created_at
+**noticias:** id, titulo, conteudo, user_id (relacionamento), created_at
 
 📂 Estrutura de Diretórios
 
 ```bash
         app/
-            ├── Http/
-            │   └── Controllers/
-            │       ├── Auth/
-            │       ├── NoticiaController.php
-            │       └── UserController.php
-            resources/
-            ├── views/
-            │   ├── noticias/
-            │   ├── users/
-            │   └── auth/
-            routes/
-            └── web.php
-👨‍💻 Autor
+        ├── Http/
+        │   └── Controllers/
+        │       ├── Auth/
+        │       ├── NoticiaController.php
+        │       └── ProfileController.php
+        resources/
+        ├── views/
+        │   ├── noticias/
+        │   ├── layouts/
+        │   ├── alerts/
+        │   ├── profile/
+        │   └── auth/
+        routes/
+        └── web.php
+        public/
+        └── uploads/
+            └── fotos/
 
-Arnaldo Junior
-Desenvolvedor Backend | Especialista em Laravel, Java, Spring Boot
+                
+```
 
-5️⃣ Estrutura do Banco de Dados
 
-### Tabela users
+## 5️⃣ Estrutura do Banco de Dados
+
+### Tabela <i>users</i>
 
 |Campo |Tipo  |Descrição        |
 |------|-------|----------------|
@@ -117,7 +122,6 @@ Desenvolvedor Backend | Especialista em Laravel, Java, Spring Boot
 |user_id| bigint| Relacionamento com users.id|
 |timestamps| datetime| created_at, updated_at|
 
----
 
 ## 🌐 Observação sobre deploy no Vercel
 
@@ -131,4 +135,40 @@ No entanto, devido às **limitações da conta gratuita (como número reduzido d
 A tentativa pode ser consultada na branch:
 [`vercel-adaptacao-revertida`](https://github.com/Arnaldo-Araujo/dixdesafioum/tree/feature/vercel-adaptacao-reverti)
 
----
+
+## 🌈 Tema da Sidebar
+Cada usuário pode escolher entre:
+
+Azul padrão (primary)
+
+Azul claro (blue)
+
+Verde (green)
+
+Degradê Rosa-Roxo (pink-purple)
+
+Essa cor fica salva no banco e personalizada por usuário.
+
+## 🌿 Estratégia de Versionamento (Git)
+
+Tipo | Prefixo | Exemplo
+--- | --- | ---
+Nova feature | feature/ | feature/profile-foto-independente
+Correção | bugfix/ | bugfix/erro-upload-imagem
+Release | release/ | release/v1.0.0
+
+
+## 📋 Observações
+O projeto pode ser publicado no Vercel (versão lite com SQLite) ou demonstrado via AWS EC2
+
+Todas as rotas estão protegidas com middleware auth
+
+Utiliza commits semânticos para versionamento com Git
+
+
+
+
+## 👨‍💻 Autor
+
+Arnaldo Junior
+Desenvolvedor Backend | Especialista em Laravel, Java, Spring Boot

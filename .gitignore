@@ -10,6 +10,7 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
+public/uploads/fotos/*
 
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
@@ -32,3 +33,6 @@ auth.json
 .vercel
 
 .vercel
+public/uploads/fotos/67fe7b3168586.jpg
+public/uploads/fotos/67fe794ae83ed.jpg
+public/uploads/fotos/67fe7995a75ab.jpg

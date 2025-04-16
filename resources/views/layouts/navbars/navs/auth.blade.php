@@ -48,7 +48,7 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="photo">
-                            <img src="{{ asset('white') }}/img/anime3.png" alt="{{ __('Profile Photo') }}">
+                            <img src="{{ asset(auth()->user()->foto ?? 'white/img/anime3.png') }}" alt="Foto de Perfil" class="rounded-circle" width="40">
                         </div>
                         <b class="caret d-none d-lg-block d-xl-block"></b>
                         <p class="d-lg-none">{{ __('Log out') }}</p>
@@ -56,9 +56,6 @@
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
                             <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item">{{ __('Perfil') }}</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Configurações') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">

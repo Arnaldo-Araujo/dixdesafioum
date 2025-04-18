@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">{{ $noticia->titulo }}</h4>
+        <h2 class="card-title" style="font-weight: bold">{{ $noticia->titulo }}</h2>
     </div>
     <div class="card-body">
         <p>{{ $noticia->conteudo }}</p>
